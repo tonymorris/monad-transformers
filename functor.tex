@@ -1,0 +1,55 @@
+\begin{frame}[fragile]
+\frametitle{Functor}
+\begin{block}{A functor F is given by the function:}
+\begin{lstlisting}
+    (a -> b) -> (F a -> F b)
+\end{lstlisting}
+\end{block}
+\emph{lifts a unary function into an environment F}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Haskell}
+\begin{block}{Functor using Haskell syntax}
+\begin{lstlisting}[language=haskell]
+    class Functor f where
+      fmap :: (a -> b) -> (f a -> f b)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Examples}
+\begin{block}{Examples of Functors}
+\begin{itemize}
+  \item The list functor maps a function on each list element:
+    \begin{lstlisting}
+    (a -> b) -> ([] a -> [] b)
+    (a -> b) -> ([a] -> [b])
+    \end{lstlisting}
+  \item The maybe functor maps on each element:
+    \begin{lstlisting}
+    (a -> b) -> (Maybe a -> Maybe b)
+    \end{lstlisting}    
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Examples in Haskell}
+\begin{block}{Examples of Functors using Haskell syntax}
+\begin{lstlisting}[language=haskell]
+    instance Functor [] where
+      fmap f =
+        foldr ((:) . f) []
+
+    instance Functor Maybe where
+      fmap f =
+        maybe Nothing (Just . f)
+
+    instance Functor ((->) t) where
+      fmap f g =
+        \x -> f (g x)
+\end{lstlisting}
+\end{block}
+\end{frame}

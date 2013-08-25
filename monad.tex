@@ -1,0 +1,65 @@
+\begin{frame}[fragile]
+\frametitle{Monad}
+\begin{block}{A monad F is given by the function:}
+\begin{lstlisting}
+    (a -> F b) -> (F a -> F b)
+\end{lstlisting}
+\end{block}
+\emph{binds a function through an environment F}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor vs Monad}
+\begin{block}{Functor vs Monad}
+\begin{lstlisting}
+    (a ->   b) -> (F a -> F b)
+    (a -> F b) -> (F a -> F b)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Monad Haskell}
+\begin{block}{Monad using Haskell syntax}
+\begin{lstlisting}[language=haskell]
+    class Monad f where
+      bind :: (a -> f b) -> (f a -> f b)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Monad Examples}
+\begin{block}{Examples of Monads}
+\begin{itemize}
+  \item The list monad takes the cartesian product:
+    \begin{lstlisting}
+    (a -> [] b) -> ([] a -> [] b)
+    (a -> [b]) -> ([a] -> [b])
+    \end{lstlisting}
+  \item The maybe monad threads the possible Nothing:
+    \begin{lstlisting}
+    (a -> Maybe b) -> (Maybe a -> Maybe b)
+    \end{lstlisting}    
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Monad Examples in Haskell}
+\begin{block}{Examples of Monads using Haskell syntax}
+\begin{lstlisting}[language=haskell]
+    instance Monad [] where
+      bind f =
+        foldr ((++) . f) []
+
+    instance Monad Maybe where
+      bind f =
+        maybe Nothing f
+
+    instance Monad ((->) t) where
+      bind f g =
+        \x -> f (g x) x
+\end{lstlisting}
+\end{block}
+\end{frame}

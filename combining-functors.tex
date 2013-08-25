@@ -1,0 +1,51 @@
+\begin{frame}[fragile]
+\frametitle{Combining Functors}
+\begin{block}{Mapping on a [] of Maybe}
+Suppose I glue two functors, \lstinline$[]$ and \lstinline$Maybe$, together:
+\begin{lstlisting}[language=haskell]
+  value :: [Maybe a]
+\end{lstlisting}
+and I want to map a function \lstinline$f :: a -> b$:
+\begin{lstlisting}[language=haskell]
+  result :: [Maybe b]
+  result = fmap (fmap f) value
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Composition}
+\begin{block}{Mapping on a (f of g)}
+In fact, I can do this for any two functors:
+\begin{lstlisting}[language=haskell]
+  value :: f (g a)
+\end{lstlisting}
+to map a function \lstinline$f :: a -> b$:
+\begin{lstlisting}[language=haskell]
+  result :: f (g b)
+  result = fmap (fmap f) value
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Composition}
+\begin{block}{In other words}
+If f and g are functors, the (f of g) is a functor:
+\begin{lstlisting}[language=haskell]
+  data Compose f g x = Compose (f (g x))
+
+  instance (Functor f, Functor g) =>
+      Functor (Compose f g) where
+    fmap f (Compose z) =
+      Compose (fmap (fmap f) z)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Functors Compose}
+The composition of two arbitrary functors makes a new functor.
+
+In brief, we say that \emph{functors compose}.
+\end{frame}

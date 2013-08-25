@@ -1,0 +1,75 @@
+\begin{frame}[fragile]
+\frametitle{Combining Monads}
+\begin{block}{Binding on a [] of Maybe}
+Suppose I glue two monads, \lstinline$[]$ and \lstinline$Maybe$, together:
+\begin{lstlisting}[language=haskell]
+  value :: [Maybe a]
+\end{lstlisting}
+and I want to bind a function \lstinline$f :: a -> [Maybe b]$:
+\begin{lstlisting}[language=haskell]
+  result :: [Maybe b]
+  result = bind (maybe (unit Nothing) f) value
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Combining Two Monads}
+\begin{block}{Binding on a [] of Maybe}
+We called bind on a list 
+\begin{lstlisting}[language=haskell]
+  result = bind (maybe (unit Nothing) f) value
+           ^     ^      
+\end{lstlisting}
+but we destructured the Maybe using Maybe-specific calls.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Composing Monads}
+If f and g are monads, then is (f of g) a monad?
+\begin{block}{Can we generalise?}
+\begin{lstlisting}[language=haskell]
+  instance (Monad f, Monad g) =>
+      Monad (Compose f g) where
+    bind =
+      error "???"
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Composing Monads}
+In other words \ldots
+\begin{block}{Can we write a function with this type?}
+\begin{lstlisting}[language=haskell]
+  bindComp ::
+    (Monad f, Monad g) =>
+    (a -> f (g b))
+    -> f (g a)
+    -> f (g b)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Composing Monads}
+\begin{block}{No. Try it.}
+There are several ways to tie your knickers in a knot, but they will always be tangled.
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Composing Monads}
+However, we can bind on (f of Maybe) for any monad f.
+
+\begin{lstlisting}[language=haskell]
+  result ::
+    Monad f =>
+    (a -> f (Maybe b))
+    -> f (Maybe a)
+    -> f (Maybe b)
+  result =
+    bind (maybe (unit Nothing) f) value
+\end{lstlisting}
+\end{frame}
