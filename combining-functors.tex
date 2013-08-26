@@ -31,7 +31,7 @@ to map a function \lstinline$f :: a -> b$:
 \begin{frame}[fragile]
 \frametitle{Functor Composition}
 \begin{block}{In other words}
-If f and g are functors, the (f of g) is a functor:
+If f and g are functors, then (f of g) is a functor:
 \begin{lstlisting}[language=haskell]
   data Compose f g x = Compose (f (g x))
 

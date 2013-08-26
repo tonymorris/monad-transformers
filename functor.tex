@@ -22,12 +22,12 @@
 \frametitle{Functor Examples}
 \begin{block}{Examples of Functors}
 \begin{itemize}
-  \item The list functor maps a function on each list element:
+  \item The list functor maps a function on head of each cons cell:
     \begin{lstlisting}
     (a -> b) -> ([] a -> [] b)
     (a -> b) -> ([a] -> [b])
     \end{lstlisting}
-  \item The maybe functor maps on each element:
+  \item The maybe functor maps a function on Just:
     \begin{lstlisting}
     (a -> b) -> (Maybe a -> Maybe b)
     \end{lstlisting}    
