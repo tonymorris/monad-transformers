@@ -16,6 +16,17 @@ and I want to map a function \lstinline$f :: a -> b$:
 \begin{frame}[fragile]
 \frametitle{Functor Composition}
 \begin{block}{Mapping on a (f of g)}
+\begin{lstlisting}[language=haskell]
+  \f -> fmap (fmap f) ::
+    (Functor f, Functor g) =>
+    (a -> b) -> f (g a) -> f (g b)
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Functor Composition}
+\begin{block}{Mapping on a (f of g)}
 In fact, I can do this for any two functors:
 \begin{lstlisting}[language=haskell]
   value :: f (g a)
