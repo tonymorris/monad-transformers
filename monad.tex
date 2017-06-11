@@ -30,14 +30,14 @@
 
 \begin{frame}[fragile]
 \frametitle{Monad Examples}
-\begin{block}{Examples of Monads}
+\begin{block}{Examples of Monad instances}
 \begin{itemize}
   \item The list monad takes the cartesian product:
     \begin{lstlisting}
     (a -> [] b) -> ([] a -> [] b)
     (a -> [b]) -> ([a] -> [b])
     \end{lstlisting}
-  \item The maybe monad threads the possible Nothing:
+  \item The maybe monad threads the possible Just value:
     \begin{lstlisting}
     (a -> Maybe b) -> (Maybe a -> Maybe b)
     \end{lstlisting}    
@@ -47,7 +47,7 @@
 
 \begin{frame}[fragile]
 \frametitle{Monad Examples in Haskell}
-\begin{block}{Examples of Monads using Haskell syntax}
+\begin{block}{Examples of Monad instances using Haskell syntax}
 \begin{lstlisting}[language=haskell]
     instance Monad [] where
       bind f =

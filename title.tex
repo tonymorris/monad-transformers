@@ -1,0 +1,38 @@
+\newmdenv[tikzsetting={draw=black,fill=white,fill opacity=0.7, line width=4pt},backgroundcolor=none,leftmargin=0,rightmargin=0,innertopmargin=4pt]{Conference}
+
+\newmdenv[tikzsetting={draw=black,fill=white,fill opacity=0.7, line width=4pt},backgroundcolor=none,leftmargin=0,rightmargin=0,innertopmargin=4pt,skipbelow=\baselineskip,%
+skipabove=\baselineskip]{TitleBox}
+
+\title{\large Monad Transformers}
+\institute[NICTA]{Data61, CSIRO}
+
+{
+  \usebackgroundtemplate{\includegraphics[width=1.0\paperwidth]{image/title-background.png}}
+
+  \begin{frame}[plain] 
+
+  \begin{TitleBox}
+    \begin{center}
+    {\huge \inserttitle}
+
+    \hspace{1em}
+    
+    {\huge \insertsubtitle}
+    \end{center}
+  \end{TitleBox}
+
+  \vspace{3em}
+
+  \begin{Conference}
+    \begin{center}
+    \tiny{Brisbane Functional Programming Group, June 2017}
+
+    \hspace{1em}
+
+    {\insertauthor}
+    \end{center}
+  \end{Conference}
+
+  \end{frame}
+
+}

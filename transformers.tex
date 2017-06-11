@@ -90,10 +90,35 @@ because \emph{monads do not compose in general}
 \begin{block}{Functor Transformers do not exist}
 because \emph{functors compose} so what's the point?
 \end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Transformers}
+\begin{block}{Actually, you'll find all these things compose:}
 \begin{itemize}
-\item Comonad Transformers exist \ldots
-\item Applicative Transformers do not exist \ldots
+\item Functor
+\item Apply
+\item Applicative
+\item Alternative
+\item Foldable
+\item Foldable1
+\item Traversable
+\item Traversable1
 \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Transformers}
+\begin{block}{These do not compose:}
+\begin{itemize}
+\item Monad
+\item Bind
+\item Comonad
+\item Cobind
+\end{itemize}
+\emph{it's a useful exercise to try it anyway!}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
